@@ -101,7 +101,11 @@ function buildCode(mode: 'light' | 'dark', v: GravityAdVariant, lt: string, p: {
   if (useDarkBase || hasCustom) {
     l.push(`  slotProps={{`);
     if (useDarkBase) {
-      l.push(`    container: { style: { background: '#18181B', borderColor: '#3F3F46' } },`);
+      if (v === 'minimal') {
+        l.push(`    container: { style: { background: 'transparent', borderColor: 'transparent', boxShadow: 'none' } },`);
+      } else {
+        l.push(`    container: { style: { background: '#18181B', borderColor: '#3F3F46', boxShadow: '0 1px 4px rgba(0,0,0,0.3)' } },`);
+      }
       l.push(`    brand: { style: { color: '#FAFAFA' } },`);
       l.push(`    title: { style: { color: '#FAFAFA' } },`);
       l.push(`    text: { style: { color: '#A1A1AA' } },`);
@@ -112,6 +116,7 @@ function buildCode(mode: 'light' | 'dark', v: GravityAdVariant, lt: string, p: {
       if (p.fg) l.push(`    brand: { style: { color: '${p.fg}' } },`);
       if (p.fg) l.push(`    title: { style: { color: '${p.fg}' } },`);
       if (p.muted) l.push(`    text: { style: { color: '${p.muted}' } },`);
+      if (p.muted) l.push(`    label: { style: { color: '${p.muted}'${p.borderColor ? `, borderColor: '${p.borderColor}'` : ''} } },`);
       if (p.cta) l.push(`    cta: { style: { background: '${p.cta}' } },`);
     }
     l.push(`  }}`);

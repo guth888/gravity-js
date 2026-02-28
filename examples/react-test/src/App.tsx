@@ -429,8 +429,10 @@ function App() {
   };
 
   const switchMode = (m: 'light' | 'dark') => {
+    const preserveNullAd = adNull;
     setMode(m);
     applyTemplate(template, m);
+    if (preserveNullAd) setAdNull(true);
   };
 
   const handleFaviconUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -134,10 +134,6 @@ const defaults = {
     fontFamily: 'inherit',
     marginTop: 2,
   } as React.CSSProperties,
-
-  ctaHover: {
-    background: '#1E40AF',
-  } as React.CSSProperties,
 } as const;
 
 // Variant overrides — merged on top of defaults.
@@ -275,10 +271,6 @@ export function GravityAd({
     { ...hoverExtra, ...style },
   );
 
-  // The container already lifts on hover (shadow + translateY).
-  // Don't change CTA color on hover — it clashes with custom CTA colors.
-  const ctaHoverExtra = undefined;
-
   const hasHeader = ad.favicon || ad.brandName || showLabel;
 
   const headerEl = hasHeader ? (
@@ -341,7 +333,7 @@ export function GravityAd({
 
   const ctaEl = ad.cta ? (
     <span
-      style={slotStyle('cta', defaults.cta, variant, slotProps, ctaHoverExtra)}
+      style={slotStyle('cta', defaults.cta, variant, slotProps)}
       className={slotClass('cta', slotProps)}
     >
       {ad.cta}
